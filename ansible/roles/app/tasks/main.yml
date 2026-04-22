@@ -1,0 +1,20 @@
+- name: Create app dir
+  file:
+    path: /opt/simple-app
+    state: directory
+
+- name: Copy project
+  copy:
+    src: "{{ playbook_dir }}/../"
+    dest: /opt/simple-app
+
+- name: Run app
+  command: docker compose up -d
+  args:
+    chdir: /opt/simple-app
+
+- name: Check health
+  uri:
+    url: http://localhost:5000/health
+    status_code: 200
+

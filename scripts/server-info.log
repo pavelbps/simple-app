@@ -1,0 +1,11 @@
+2026-04-22 11:38:24 === System Info ===
+2026-04-22 11:38:24 Hostname: pavel-huawei-ubuntu
+2026-04-22 11:38:24 OS: GNU/Linux
+2026-04-22 11:38:24 Kernel: 6.17.0-20-generic
+2026-04-22 11:38:24 Uptime: up 1 week, 1 hour, 48 minutes
+2026-04-22 11:38:24 === Resources ===
+2026-04-22 11:38:24 CPU: 16
+2026-04-22 11:38:24 RAM: 5.4Gi/15Gi
+2026-04-22 11:38:24 Disk: 88G/115G
+2026-04-22 11:38:24 === Docker ===
+CONTAINER ID   IMAGE     STATUS
