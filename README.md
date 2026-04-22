@@ -127,7 +127,7 @@ your-server ansible_host=YOUR_IP ansible_user=YOUR_USER
 ## Запуск:
 make ansible-run
 
-# 📁 Структура проекта
+## 📁 Структура проекта
 
 ```text
 simple-app/
