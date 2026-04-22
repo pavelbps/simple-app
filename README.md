@@ -77,13 +77,14 @@ make server-info    # диагностика сервера
 make ansible-run    # развертывание через ansible
 
 ## 🌐 API Endpoints
-Метод         curl            Описание
-GET           /	              Hello world
-GET	          /health	        Проверка состояния
-GET	          /api/users	    Список пользователей
-POST	        /api/users	    Создать пользователя
-GET	          /api/users/<id>	Получить пользователя
-DELETE	      /api/users/<id>	Удалить пользователя
+| Метод  | URL                 | Описание                     |
+|--------|---------------------|------------------------------|
+| GET    | /                   | Hello world                  |
+| GET    | /health             | Проверка состояния           |
+| GET    | /api/users          | Список пользователе й        |
+| POST   | /api/users          | Создать пользователя         |
+| GET    | /api/users/{id}     | Получить пользователя        |
+| DELETE | /api/users/{id}     | Удалить пользователя         |
 
 Примеры
 curl http://localhost:5000/
@@ -126,15 +127,18 @@ your-server ansible_host=YOUR_IP ansible_user=YOUR_USER
 ## Запуск:
 make ansible-run
 
-## 📁 Структура проекта
+# 📁 Структура проекта
+
+```text
 simple-app/
-├── app/
-├── scripts/
-├── ansible/
-├── Dockerfile
-├── docker-compose.yml
-├── Makefile
-└── README.md
+├── app/               # Основное приложение
+├── scripts/           # Вспомогательные скрипты
+├── ansible/           # Ansible конфигурации
+├── Dockerfile         # Сборка контейнера
+├── docker-compose.yml # Оркестрация сервисов
+├── Makefile           # Команды автоматизации
+└── README.md          # Документация проекта
+```
 
 ## ⚠️ Troubleshooting
 Порт занят
