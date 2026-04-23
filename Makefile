@@ -1,5 +1,3 @@
-.PHONY: help install test lint run docker-build docker-run compose-up compose-down
-
 VENV=.venv
 
 help:
@@ -11,6 +9,11 @@ help:
 	@echo "docker-run     - run docker container"
 	@echo "compose-up     - start docker compose"
 	@echo "compose-down   - stop docker compose"
+	@echo "server-info    - show server info"
+	@echo "ansible-run    - run ansible playbook"
+	@echo "ansible-check  - run ansible check"
+	@echo "ansible-dry    - run ansible changes"
+
 
 install:
 	python3 -m venv $(VENV)
@@ -43,3 +46,9 @@ server-info:
 
 ansible-run:
 	ansible-playbook -i ansible/inventory.ini ansible/playbook.yml
+
+ansible-check:
+	ansible-playbook --syntax-check -i ansible/inventory.ini ansible/playbook.yml
+
+ansible-dry:
+	ansible-playbook -i ansible/inventory.ini ansible/playbook.yml --check

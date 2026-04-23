@@ -1,13 +1,23 @@
-- name: Install Docker
+- name: Update apt cache
+  apt:
+    update_cache: yes
+
+- name: Install Docker packages
   apt:
     name:
       - docker.io
       - docker-compose-plugin
     state: present
-    update_cache: yes
 
-- name: Start Docker
+- name: Enable and start Docker
   systemd:
     name: docker
+    enabled: yes
     state: started
-    enabled: true
+
+- name: Add user to docker group
+  user:
+    name: "{{ ansible_user }}"
+    groups: docker
+    append: yes
+  notify: restart docker

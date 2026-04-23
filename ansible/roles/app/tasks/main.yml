@@ -1,20 +1,37 @@
-- name: Create app dir
+- name: Create app directory
   file:
-    path: /opt/simple-app
+    path: "{{ app_dir }}"
     state: directory
+    mode: "0755"
 
-- name: Copy project
+- name: Copy docker-compose file
   copy:
-    src: "{{ playbook_dir }}/../"
-    dest: /opt/simple-app
+    src: "{{ playbook_dir }}/../docker-compose.yml"
+    dest: "{{ app_dir }}/docker-compose.yml"
 
-- name: Run app
+- name: Copy app directory
+  copy:
+    src: "{{ playbook_dir }}/../app"
+    dest: "{{ app_dir }}/app"
+
+- name: Run docker compose
   command: docker compose up -d
   args:
-    chdir: /opt/simple-app
+    chdir: "{{ app_dir }}"
 
-- name: Check health
+- name: Wait for app startup
+  pause:
+    seconds: 10
+
+- name: Check container is running
+  command: docker ps
+  register: docker_ps
+
+- name: Debug running containers
+  debug:
+    var: docker_ps.stdout
+
+- name: Check health endpoint
   uri:
-    url: http://localhost:5000/health
+    url: "http://localhost:{{ app_port }}/health"
     status_code: 200
-

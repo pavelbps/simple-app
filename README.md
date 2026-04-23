@@ -12,33 +12,55 @@
 - Make (GNU Make)
 
 ## Запуск локально
+```
 pip install -r app/requirements.txt
 python app/main.py
+```
 
 ## Docker
+```
 docker build -t simple-app .
 docker run -p 5000:5000 simple-app
+```
 
 ## Docker Compose
+```
 docker-compose up -d
+```
 
 ## API
-
+```text
 GET /
 GET /health
 GET /api/users
 POST /api/users
 DELETE /api/users/<id>
+```
 
 ## Тесты
+```
 pytest app/tests/
+```
 
 ## Bash
-./scripts/server-info.sh http://localhost:5000/health
+```
+./scripts/server-info.sh 
+http://localhost:5000/health
+```
 
 ## Ansible
-ansible-playbook -i ansible/inventory.ini ansible/playbook.yml
 
+Перед запуском:
+- замените YOUR_IP на ваш сервер
+- замените YOUR_USER на вашего пользователя
+- настройте SSH доступ
+```
+ssh-copy-id YOUR_USER@YOUR_IP
+```
+
+```
+ansible-playbook -i ansible/inventory.ini ansible/playbook.yml
+```
 
 ## 🚀 Быстрый старт (через Makefile)
 

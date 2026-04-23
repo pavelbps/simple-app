@@ -1,0 +1,3 @@
+app_port: 5000
+docker_image: simple-app:latest
+app_dir: /opt/simple-app
