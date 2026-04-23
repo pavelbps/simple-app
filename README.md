@@ -63,25 +63,26 @@ ansible-playbook -i ansible/inventory.ini ansible/playbook.yml
 ```
 
 ## 🚀 Быстрый старт (через Makefile)
-
-git clone <repo>
+```
+git clone git@github.com:pavelbps/simple-app.git
 cd simple-app
-
+```
+```
 make install
 make run
-
+```
 ### Проверка:
-
+```
 curl http://localhost:5000/health
-
+```
 ## 🛠️ Makefile (основной интерфейс проекта)
 
 Посмотреть доступные команды:
-
+```
 make help
-
+```
 Основные команды:
-
+```
 make install        # установить зависимости
 make test           # запустить тесты
 make lint           # проверить bash (shellcheck)
@@ -97,7 +98,7 @@ make compose-down   # остановить
 make server-info    # диагностика сервера
 
 make ansible-run    # развертывание через ansible
-
+```
 ## 🌐 API Endpoints
 | Метод  | URL                 | Описание                     |
 |--------|---------------------|------------------------------|
@@ -109,46 +110,54 @@ make ansible-run    # развертывание через ansible
 | DELETE | /api/users/{id}     | Удалить пользователя         |
 
 Примеры
+```
 curl http://localhost:5000/
-
+```
+```
 curl http://localhost:5000/health
-
+```
+```
 curl -X POST http://localhost:5000/api/users \
   -H "Content-Type: application/json" \
   -d '{"name":"test","email":"test@test.com"}'
-
+```
 ## 🧪 Тестирование
+```
 make test
-
+```
 или
-
+```
 pytest app/tests/ -v
-
+```
 ## 🐳 Docker
+```
 make docker-build
 make docker-run
-
+```
 ## 🧱 Docker Compose
+```
 make compose-up
 make compose-logs
 make compose-down
-
+```
 ## 🖥️ Bash-скрипт диагностики
+```
 make server-info
-
+```
 или
-
+```
 ./scripts/server-info.sh http://localhost:5000/health
-
+```
 ## 🤖 Ansible (развертывание)
 Отредактировать inventory:
 ```
 [webservers]
-your-server ansible_host=YOUR_IP ansible_user=YOUR_USER
+app-server ansible_host=YOUR_IP ansible_user=YOUR_USER
 ```
 ## Запуск:
+```
 make ansible-run
-
+```
 ## 📁 Структура проекта
 
 ```text
@@ -164,10 +173,14 @@ simple-app/
 
 ## ⚠️ Troubleshooting
 Порт занят
+```
 lsof -i :5000
-
+```
 ## Docker не запускается
+```
 sudo systemctl status docker
-
+```
 ## Ansible не подключается
+```
 ansible all -i ansible/inventory.ini -m ping
+```
