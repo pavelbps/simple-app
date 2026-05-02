@@ -1,9 +1,31 @@
 from flask import Flask, request, jsonify
 import uuid
 import logging
+from flask_swagger_ui import get_swaggerui_blueprint
+import argparse
 
+parser = argparse.ArgumentParser()
+parser.add_argument('--port',
+                    help='set listen port',
+                    required=False,
+                    type=int,
+                    dest='port',
+                    default=5000)
+args = parser.parse_args()
+
+port = args.port
+    
 app = Flask(__name__)
 logging.basicConfig(level=logging.INFO)
+
+SWAGGER_URL="/docs"
+API_URL="/static/swagger.json"
+
+swagger_ui_blueprint = get_swaggerui_blueprint(
+    SWAGGER_URL,
+    API_URL
+)
+app.register_blueprint(swagger_ui_blueprint, url_prefix=SWAGGER_URL)
 
 users = {}
 
@@ -50,4 +72,4 @@ def delete_user(user_id):
     return "", 204
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=port)

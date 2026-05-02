@@ -12,9 +12,10 @@
 - Make (GNU Make)
 
 ## Запуск локально
+**Note** Если порт не указан - по умолчанию используется --port **5000**
 ```
 pip install -r app/requirements.txt
-python app/main.py
+python app/main.py [-h|--help] [--port <port>]
 ```
 
 ## Docker
@@ -35,6 +36,12 @@ GET /health
 GET /api/users
 POST /api/users
 DELETE /api/users/<id>
+```
+
+## Swagger path
+
+```
+/docs
 ```
 
 ## Тесты
