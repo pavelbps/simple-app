@@ -19,10 +19,21 @@ python app/main.py [-h|--help] [--port <port>]
 ```
 
 ## Docker
+
+Build with default port:
+
 ```
 docker build -t simple-app .
 docker run -p 5000:5000 simple-app
 ```
+
+or you may specify port number:
+
+```
+docker build --build-arg PORT=8000 -t simple-app .
+docker run -p 8000:8000 simple-app
+```
+
 
 ## Docker Compose
 ```

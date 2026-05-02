@@ -2,18 +2,6 @@ from flask import Flask, request, jsonify
 import uuid
 import logging
 from flask_swagger_ui import get_swaggerui_blueprint
-import argparse
-
-parser = argparse.ArgumentParser()
-parser.add_argument('--port',
-                    help='set listen port',
-                    required=False,
-                    type=int,
-                    dest='port',
-                    default=5000)
-args = parser.parse_args()
-
-port = args.port
     
 app = Flask(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -72,4 +60,15 @@ def delete_user(user_id):
     return "", 204
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=port)
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--port',
+                        help='set listen port',
+                        required=False,
+                        type=int,
+                        dest='port',
+                        default=5000)
+    args = parser.parse_args()
+
+    app.run(host="0.0.0.0", port=args.port)
