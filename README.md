@@ -36,8 +36,16 @@ docker run -p 8000:8000 simple-app
 
 
 ## Docker Compose
+
+with default port:
 ```
 docker-compose up -d
+```
+
+or pass ports as environment variables:
+
+```
+APP_PORT=8000 HOST_PORT=8000 docker-compose up -d
 ```
 
 ## API
