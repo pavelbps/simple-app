@@ -1,13 +1,18 @@
-version: "3.9"
-
 services:
   app:
-    build: .
+    build: 
+      context: .
+      args:
+        PORT: ${APP_PORT:-5000}
     ports:
-      - "5000:5000"
+      - "${HOST_PORT:-5000}:${APP_PORT:-5000}"
+    expose:
+      - "${APP_PORT:-5000}"
     environment:
       - FLASK_ENV=production
+      - APP_PORT=${APP_PORT:-5000}
+      - HOST_PORT=${HOST_PORT:-5000}
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:${APP_PORT:-5000}/health"]
       interval: 10s
       retries: 3

@@ -1,5 +1,7 @@
 FROM python:3.12-slim
 
+ARG PORT="5000"
+ENV PORT=${PORT}
 WORKDIR /app
 
 COPY app/requirements.txt .
@@ -10,8 +12,9 @@ COPY app/ .
 RUN useradd -m appuser
 USER appuser
 
-EXPOSE 5000
+EXPOSE ${PORT}
 
-HEALTHCHECK CMD curl -f http://localhost:5000/health || exit 1
+HEALTHCHECK CMD curl -f http://localhost:${PORT}/health || exit 1
 
-CMD ["gunicorn", "-b", "0.0.0.0:5000", "main:app"]
+ENTRYPOINT ["sh", "-c"]
+CMD ["gunicorn main:app --bind 0.0.0.0:${PORT}"]

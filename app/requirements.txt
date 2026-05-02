@@ -1,3 +1,4 @@
 flask
 gunicorn
 pytest
+flask-swagger-ui==5.32.4

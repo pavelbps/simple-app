@@ -12,20 +12,40 @@
 - Make (GNU Make)
 
 ## Запуск локально
+**Note** Если порт не указан - по умолчанию используется --port **5000**
 ```
 pip install -r app/requirements.txt
-python app/main.py
+python app/main.py [-h|--help] [--port <port>]
 ```
 
 ## Docker
+
+Build with default port:
+
 ```
 docker build -t simple-app .
 docker run -p 5000:5000 simple-app
 ```
 
+or you may specify port number:
+
+```
+docker build --build-arg PORT=8000 -t simple-app .
+docker run -p 8000:8000 simple-app
+```
+
+
 ## Docker Compose
+
+with default port:
 ```
 docker-compose up -d
+```
+
+or pass ports as environment variables:
+
+```
+APP_PORT=8000 HOST_PORT=8000 docker-compose up -d
 ```
 
 ## API
@@ -35,6 +55,12 @@ GET /health
 GET /api/users
 POST /api/users
 DELETE /api/users/<id>
+```
+
+## Swagger path
+
+```
+/docs
 ```
 
 ## Тесты
